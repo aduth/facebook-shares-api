@@ -4,7 +4,7 @@ var http = require( 'http' ),
 	pick = require( 'lodash/object/pick' ),
 	queue, server, sendResponse;
 
-if ( ! process.env.APP_FACEBOOK_CLIENT_ID || ! process.env.APP_FACEBOOK_CLIENT_SECRET ) {
+if ( ! process.env.FACEBOOK_CLIENT_ID || ! process.env.FACEBOOK_CLIENT_SECRET ) {
 	throw new Error( 'Could not find APP_FACEBOOK_CLIENT_ID or APP_FACEBOOK_CLIENT_SECRET in environment variables' );
 }
 
