@@ -1,0 +1,19 @@
+{
+  "name": "facebook-shares-api",
+  "description": "Web API to request URL share counts from Facebook",
+  "keywords": [
+    "facebook",
+    "shares"
+  ],
+  "website": "https://github.com/aduth/facebook-shares-api",
+  "repository": "https://github.com/aduth/facebook-shares-api",
+  "success_url": "/",
+  "env": {
+    "FACEBOOK_CLIENT_ID": {
+      "description": "Your Facebook application client ID"
+    },
+    "FACEBOOK_CLIENT_SECRET": {
+      "description": "Your Facebook application client secret"
+    }
+  }
+}
