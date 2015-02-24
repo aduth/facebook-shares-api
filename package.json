@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Web API to request URL share counts from Facebook",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "author": {
     "name": "Andrew Duthie",
     "email": "andrew.duthie@automattic.com"
