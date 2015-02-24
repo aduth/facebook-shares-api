@@ -1,0 +1,15 @@
+{
+  "name": "facebook-shares-api",
+  "version": "0.1.0",
+  "description": "Web API to request URL share counts from Facebook",
+  "main": "index.js",
+  "author": {
+    "name": "Andrew Duthie",
+    "email": "andrew.duthie@automattic.com"
+  },
+  "license": "GPLv2+",
+  "dependencies": {
+    "lodash": "^3.3.1",
+    "request": "^2.53.0"
+  }
+}
