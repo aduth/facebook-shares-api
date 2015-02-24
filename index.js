@@ -8,7 +8,7 @@ if ( ! process.env.APP_FACEBOOK_CLIENT_ID || ! process.env.APP_FACEBOOK_CLIENT_S
 	throw new Error( 'Could not find APP_FACEBOOK_CLIENT_ID or APP_FACEBOOK_CLIENT_SECRET in environment variables' );
 }
 
-queue = new Queue( process.env.APP_FACEBOOK_CLIENT_ID + '|' + process.env.APP_FACEBOOK_CLIENT_SECRET );
+queue = new Queue( process.env.FACEBOOK_CLIENT_ID + '|' + process.env.FACEBOOK_CLIENT_SECRET );
 
 sendResponse = function( body, res ) {
 	res.writeHead( 200 );
@@ -31,4 +31,4 @@ server = http.createServer( function( req, res ) {
 	} );
 } );
 
-server.listen( process.env.APP_PORT || 8000 );
+server.listen( process.env.PORT || 8000 );
