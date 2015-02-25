@@ -1,26 +1,26 @@
 var EventEmitter = require( 'events' ).EventEmitter,
 	request = require( 'request' );
 
-var Queue = module.exports = function( token ) {
+var Queue = module.exports = function( token, delay ) {
 	this.token = token;
 	this.queue = [];
 	this.lastProcess = 0;
+	this.delay = delay || 1000;
 };
 
 Queue.baseUrl = 'https://graph.facebook.com/v2.2/';
-Queue.delay = 1000;
 
 Queue.prototype = Object.create( EventEmitter.prototype );
 
 Queue.prototype.add = function( url ) {
 	this.queue = this.queue.concat( url );
 
-	if ( Date.now() - this.lastProcess > Queue.delay ) {
+	if ( Date.now() - this.lastProcess > this.delay ) {
 		this.process();
 	} else if ( ! this.processing && ! this.timeoutId ) {
 		this.timeoutId = setTimeout(
 			this.process.bind( this ),
-			Queue.delay - ( Date.now() - this.lastProcess )
+			this.delay - ( Date.now() - this.lastProcess )
 		);
 	}
 };
