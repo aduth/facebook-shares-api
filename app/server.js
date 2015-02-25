@@ -2,8 +2,6 @@ var http = require( 'http' ),
 	url = require( 'url' ),
 	async = require( 'async' ),
 	pick = require( 'lodash/object/pick' ),
-	filter = require( 'lodash/collection/filter' ),
-	map = require( 'lodash/collection/map' ),
 	without = require( 'lodash/array/without' ),
 	assign = require( 'lodash/object/assign' ),
 	sendResponse;
