@@ -36,13 +36,13 @@ Queue.prototype.process = function() {
 		return;
 	}
 
+	this.queue = [];
 	this.processing = true;
 	request.get( {
 		url: Queue.baseUrl + '?ids=' + urls + '&access_token=' + this.token,
 		json: true
 	}, function( err, res, body ) {
 		this.emit( 'process', body );
-		this.queue = [];
 		this.processing = false;
 		this.lastProcess = Date.now();
 	}.bind( this ) );
