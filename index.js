@@ -1,14 +1,15 @@
 var http = require( 'http' ),
 	url = require( 'url' ),
-	Queue = require( './queue' ),
 	pick = require( 'lodash/object/pick' ),
+	Queue = require( './queue' ),
+	config = require( './config' ),
 	queue, server, sendResponse;
 
-if ( ! process.env.FACEBOOK_CLIENT_ID || ! process.env.FACEBOOK_CLIENT_SECRET ) {
+if ( ! config.facebook.clientId || ! config.facebook.clientSecret ) {
 	throw new Error( 'Could not find APP_FACEBOOK_CLIENT_ID or APP_FACEBOOK_CLIENT_SECRET in environment variables' );
 }
 
-queue = new Queue( process.env.FACEBOOK_CLIENT_ID + '|' + process.env.FACEBOOK_CLIENT_SECRET, process.env.FACEBOOK_REQUEST_DELAY );
+queue = new Queue( config.facebook.clientId + '|' + config.facebook.clientSecret, config.facebook.requestDelay );
 
 sendResponse = function( body, res ) {
 	res.writeHead( 200 );
@@ -31,4 +32,5 @@ server = http.createServer( function( req, res ) {
 	} );
 } );
 
-server.listen( process.env.PORT || 8000 );
+server.listen( config.port );
+console.log( 'Listening on port %d...', config.port );
