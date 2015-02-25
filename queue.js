@@ -29,16 +29,16 @@ Queue.prototype.process = function() {
 	delete this.timeoutId;
 	this.processing = true;
 
-	var query = this.queue.map( function( url ) {
-		return 'ids=' + url;
-	} ).join( '&' );
+	var urls = this.queue.map( function( url ) {
+		return encodeURIComponent( url );
+	} ).join();
 
-	if ( ! query.length ) {
+	if ( ! urls.length ) {
 		return;
 	}
 
 	request.get( {
-		url: Queue.baseUrl + '?' + query + '&access_token=' + this.token,
+		url: Queue.baseUrl + '?ids=' + urls + '&access_token=' + this.token,
 		json: true
 	}, function( err, res, body ) {
 		this.emit( 'process', body );
