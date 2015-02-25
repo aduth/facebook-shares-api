@@ -9,7 +9,11 @@ if ( ! config.facebook.clientId || ! config.facebook.clientSecret ) {
 	throw new Error( 'Could not find APP_FACEBOOK_CLIENT_ID or APP_FACEBOOK_CLIENT_SECRET in environment variables' );
 }
 
-queue = new Queue( config.facebook.clientId + '|' + config.facebook.clientSecret, config.facebook.requestDelay );
+queue = new Queue( {
+	token: config.facebook.clientId + '|' + config.facebook.clientSecret,
+	delay: config.facebook.requestDelay,
+	maxQueue: config.facebook.maxQueue
+} );
 
 sendResponse = function( body, res ) {
 	res.writeHead( 200 );

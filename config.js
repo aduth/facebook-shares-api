@@ -3,6 +3,7 @@ module.exports = {
 	facebook: {
 		clientId: process.env.FACEBOOK_CLIENT_ID,
 		clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-		requestDelay: process.env.FACEBOOK_REQUEST_DELAY
+		requestDelay: process.env.FACEBOOK_REQUEST_DELAY,
+		maxQueue: process.env.FACEBOOK_MAX_QUEUE
 	}
 };
