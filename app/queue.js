@@ -1,11 +1,11 @@
 var EventEmitter = require( 'events' ).EventEmitter,
 	request = require( 'request' ),
-	assign = require( 'lodash/object/assign' ),
+	defaults = require( 'lodash/object/defaults' ),
 	mapValues = require( 'lodash/object/mapValues' ),
 	Queue;
 
 Queue = module.exports = function( options ) {
-	this.options = assign( {}, Queue.defaultOptions, options );
+	this.options = defaults( {}, options, Queue.defaultOptions );
 	this.queue = [];
 	this.lastProcess = 0;
 };
