@@ -27,7 +27,6 @@ Queue.prototype.add = function( url ) {
 
 Queue.prototype.process = function() {
 	delete this.timeoutId;
-	this.processing = true;
 
 	var urls = this.queue.map( function( url ) {
 		return encodeURIComponent( url );
@@ -37,6 +36,7 @@ Queue.prototype.process = function() {
 		return;
 	}
 
+	this.processing = true;
 	request.get( {
 		url: Queue.baseUrl + '?ids=' + urls + '&access_token=' + this.token,
 		json: true
