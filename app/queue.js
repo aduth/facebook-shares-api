@@ -1,6 +1,7 @@
 var EventEmitter = require( 'events' ).EventEmitter,
 	request = require( 'request' ),
 	assign = require( 'lodash/object/assign' ),
+	mapValues = require( 'lodash/object/mapValues' ),
 	Queue;
 
 Queue = module.exports = function( options ) {
@@ -48,7 +49,14 @@ Queue.prototype.process = function() {
 		url: Queue.baseUrl + '?ids=' + urls + '&access_token=' + this.options.token,
 		json: true
 	}, function( err, res, body ) {
-		this.emit( 'process', body );
+		var values;
+		if ( ! err && body ) {
+			values = mapValues( body, function( detail ) {
+				return detail.share ? detail.share.share_count : null;
+			} );
+		}
+
+		this.emit( 'process', values );
 		this.processing = false;
 		this.lastProcess = Date.now();
 	}.bind( this ) );
