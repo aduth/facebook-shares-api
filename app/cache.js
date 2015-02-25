@@ -16,6 +16,10 @@ Cache = module.exports = function( options ) {
 	if ( this.options.redis.url ) {
 		redisDetails = url.parse( this.options.redis.url );
 		this.client = redis.createClient( redisDetails.port, redisDetails.hostname );
+
+		if ( redisDetails.auth ) {
+			this.client.auth( redisDetails.auth.split( ':' )[1] );
+		}
 	}
 };
 
