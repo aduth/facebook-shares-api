@@ -1,8 +1,9 @@
 var EventEmitter = require( 'events' ).EventEmitter,
 	request = require( 'request' ),
-	assign = require( 'lodash/object/assign' );
+	assign = require( 'lodash/object/assign' ),
+	Queue;
 
-var Queue = module.exports = function( options ) {
+Queue = module.exports = function( options ) {
 	this.options = assign( {}, Queue.defaultOptions, options );
 	this.queue = [];
 	this.lastProcess = 0;
